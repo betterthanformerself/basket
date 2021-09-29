@@ -1,0 +1,24 @@
+<h1>Vegetable Gallery</h1>
+<table>
+ <%count=0%>
+ <%@vegetables.each do |vegetable| %>	
+ <% if (count%3)==0 %>
+</tr>
+<tr>
+
+	<%end%>
+	<% count+=1%>
+	<td><%= image_tag vegetable.product_image , :height=>"300" , :width=>"300" %> <br>
+		Name   : <%= vegetable.name%><br>
+		Price  : <%= vegetable.price%><br>
+		Family : <%= vegetable.family%><br>
+		Color  : <%= vegetable.color%><br>
+		<%= button_to 'Add to Cart' ,line_items_path(:store_id => vegetable.id) %></td>
+
+	<%end%>
+	</tr>
+</table>
+
+
+
+

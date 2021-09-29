@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Basket</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+ <body>
+  <%if user_signed_in? && session[:admin].nil?%>
+   Logged in as <strong><%= current_user.email %></strong>.
+   <%end%>
+  <div class="hero_area">
+    <div class="hero_bg_box">
+      <img src="/assets/hero-bg.jpg" alt="">
+    </div>
+    <!-- header section strats -->
+    <header class="header_section">
+
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container">
+          <a class="navbar-brand" href="index.html">
+            <span>
+              Vegetable Store
+            </span>
+
+
+            
+
+
+          </a>
+
+          <div class="" id="">
+            <div class="container">
+              <div class=" mr-auto flex-column flex-lg-row align-items-center">    
+                <ul class="navbar-nav justify-content-between ">
+                  <div class="User_option">
+                    <li class="">
+                      <a class="" href="">
+                        <i class="fa fa-user" aria-hidden="true"></i>
+                      </a>
+                    </li>
+                    <form class="form-inline ">
+                      <button class="btn   nav_search-btn" type="submit">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </button>
+                    </form>
+                  </div>
+                </ul>
+              </div>
+            </div>
+
+
+            <div class="custom_menu-btn">
+
+              <button onclick="openNav()">
+                <span class="s-1"> </span>
+                <span class="s-2"> </span>
+                <span class="s-3"> </span>
+              </button>
+            </div>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="/home/index">HOME</a>
+                <a href="about.html">ABOUT</a>
+                <a href="contact.html">CONTACT US</a>
+                <a href="/users/sign_up">SIGN UP</a>
+
+               <% if session[:admin] %>
+<a href="/admin/logout">ADMIN LOGOUT</a>
+<%else%>
+<a href="/admin/login">ADMIN LOGIN</a>
+
+
+
+<%end%>
+<% if user_signed_in? %>
+ 
+  <%= link_to 'EDIT PROFILE', edit_user_registration_path, :class => 'navbar-link' %> 
+  <%= link_to "LOGOUT", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+<% else %>
+  <%= link_to "SIGN UP", new_user_registration_path, :class => 'navbar-link'  %>
+  <%= link_to "LOGIN", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+
+<p class="navbar-text ">
+<%if user_signed_in? or session[:admin] %>
+<%= form_tag("/gallery/search", method: "get") do %>
+  <%= label_tag :search  %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search") %>
+<% end %>
+<%end%>
+
+
+
+</p>
+
+
+
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+    <!-- slider section -->
+    <section class="slider_section ">
+      <div id="customCarousel1" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h1>
+                      Fresh <br />
+                      Vegetables
+                    </h1>
+                    <a href="/gallery/index" class="">
+                      buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item ">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="detail-box">
+                    <h5>
+                      02
+                    </h5>
+                    <h1>
+                      Fresh <br />
+                      Vegetables
+                    </h1>
+                    <a href="" class="">
+                      buy Now
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <ol class="carousel-indicators">
+          <li data-target="#customCarousel1" data-slide-to="0" class="active"></li>
+          <li data-target="#customCarousel1" data-slide-to="1"></li>
+        </ol>
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
+
+  <!-- veg section -->
+
+  <section class="veg_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          OUR VEGETABLES
+        </h2>
+
+
+
+        <p class="navbar-text float-right">
+
+</p>
+        <% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+
+
+
+
+
+
+
+
+
+        <%= yield %>
+
+       
+      </div>
+
+      
+      
+  </section>
+
+  <!-- end veg section -->
+
+  <!-- about section -->
+
+  <section class="about_section ">
+    <div class="about_bg_box">
+      <img src="/assets/about-bg.jpg" alt="">
+    </div>
+    <div class="container ">
+      <div class="row">
+        <div class="col-md-6 ml-auto ">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                We Provide <br>
+                Fresh Vegetables
+              </h2>
+            </div>
+            
+            <a href="" class="mt_20">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end about section -->
+
+  <!-- contact section -->
+  <section class="contact_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Contact <span>Us</span>
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form_container contact-form">
+            <form action="">
+              <div>
+                <input type="text" placeholder="Your Name" />
+              </div>
+              <div>
+                <input type="text" placeholder="Phone Number" />
+              </div>
+              <div>
+                <input type="email" placeholder="Email" />
+              </div>
+              <div>
+                <input type="text" class="message-box" placeholder="Message" />
+              </div>
+              <div class="btn_box">
+                <button>
+                  SEND
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="map_container">
+            <div class="map">
+              <div id="googleMap"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end contact section -->
+
+  <!-- client section -->
+
+
+
+  <!-- end client section -->
+
+  <!-- footer section -->
+  <section class="container-fluid footer_section">
+    <div class="container">
+      <div class="row ">
+        <div class="col-sm-6 col-md-4 col-lg-3 footer-col">
+          <div class="footer_detail">
+            <a href="index.html">
+              <h4>
+                Eatveg
+              </h4>
+            </a>
+            <p>
+              We provide you health
+            </p>
+            <div class="social_box">
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-linkedin" aria-hidden="true"></i>
+              </a>
+              <a href="">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3 mx-auto footer-col">
+          <h4>
+            Contact us
+          </h4>
+          
+          <div class="contact_nav">
+            <a href="">
+              <i class="fa fa-map-marker" aria-hidden="true"></i>
+              <span>
+                Location
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>
+                Call : +01 123455678990
+              </span>
+            </a>
+            <a href="">
+              <i class="fa fa-envelope" aria-hidden="true"></i>
+              <span>
+                Email : demo@gmail.com
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-md-4 footer-col">
+          <div class="footer_form">
+            <h4>
+              SIGN UP TO OUR NEWSLETTER
+            </h4>
+            <form action="">
+              <input type="text" placeholder="Enter Your Email" />
+              <button type="submit">
+                Subscribe
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="footer-info">
+       
+      </div>
+    </div>
+  </section>
+  <div class="row">
+        <div class="col-md-6">
+          <div class="form_container contact-form">
+ <div> <% if session[:admin] %>
+            <a href="/admin/logout">admin logout</a></div>
+          <div><% else %>
+            <a href="/admin/login">admin login</a>
+           </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+  <!-- end  footer section -->
+
+  <script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js"></script>
+  <script type="text/javascript" src="js/custom.js"></script>
+  <!-- Google Map -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCh39n5U-4IoWpsVGUHWdqB6puEkhRLdmI&callback=myMap"></script>
+  <!-- End Google Map -->
+</body>
+
+</html>
