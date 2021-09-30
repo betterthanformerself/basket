@@ -1,4 +1,4 @@
-<section class="login_section layout_padding">
+<section class="contact_section layout_padding">
     <div class="container">
       <div class="heading_container">
 <h4>Admin Area</h4>
@@ -7,27 +7,27 @@
 	<%= form_with do |form| %>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-20">
           <div class="form_container contact-form">
             <form action="">
-         <div>   	
+            	
 	<%= form.label :name %>
 	<%= form.text_field :name %>
-</div>
+
 
 
         <div>  	
 	<%= form.label :password %>
-	<%= form.password_field :password%>
+	<%= form.password_field :password%><br>
 </div>
 
-<div class="row">
+
 <div class="btn_box">
 	<button>
 	Login
 	 </button>
 	</div>
-</div>
+
 
 
 </form>
@@ -35,8 +35,11 @@
 </div>
         </div>
         </div>
+
         
 <%end%>
+</div>
+        </div> 
 </section>
 
 

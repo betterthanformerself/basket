@@ -39,15 +39,24 @@
                 <ul class="navbar-nav justify-content-between ">
                   <div class="User_option">
                     <li class="">
-                      <a class="" href="">
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                      </a>
+                      <a class="" href="/admin/login">
+                        <i class="fa fa-user" aria-hidden="true">&emsp;</i>
+                                              </a>
                     </li>
-                    <form class="form-inline ">
-                      <button class="btn   nav_search-btn" type="submit">
-                        <i class="fa fa-search" aria-hidden="true"></i>
-                      </button>
-                    </form>
+                    
+                    
+
+
+                      
+
+<%= form_tag("/gallery/search", method: "get") do %>
+  <% label_tag :search  %>
+  <%= text_field_tag(:search) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
+
+                    
                   </div>
                 </ul>
               </div>
@@ -67,7 +76,7 @@
                 <a href="/home/index">HOME</a>
                 <a href="about.html">ABOUT</a>
                 <a href="contact.html">CONTACT US</a>
-                <a href="/users/sign_up">SIGN UP</a>
+                
 
                <% if session[:admin] %>
 <a href="/admin/logout">ADMIN LOGOUT</a>
@@ -86,18 +95,19 @@
   <%= link_to "LOGIN", new_user_session_path, :class => 'navbar-link'  %>
 <% end %>
 
-<p class="navbar-text ">
-<%if user_signed_in? or session[:admin] %>
+
 <%= form_tag("/gallery/search", method: "get") do %>
-  <%= label_tag :search  %>
+  <% label_tag :search  %>
   <%= text_field_tag(:search) %>
   <%= submit_tag("Search") %>
 <% end %>
-<%end%>
 
 
 
-</p>
+
+
+
+
 
 
 
@@ -228,47 +238,7 @@
   <!-- end about section -->
 
   <!-- contact section -->
-  <section class="contact_section layout_padding">
-    <div class="container">
-      <div class="heading_container">
-        <h2>
-          Contact <span>Us</span>
-        </h2>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <div class="form_container contact-form">
-            <form action="">
-              <div>
-                <input type="text" placeholder="Your Name" />
-              </div>
-              <div>
-                <input type="text" placeholder="Phone Number" />
-              </div>
-              <div>
-                <input type="email" placeholder="Email" />
-              </div>
-              <div>
-                <input type="text" class="message-box" placeholder="Message" />
-              </div>
-              <div class="btn_box">
-                <button>
-                  SEND
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="map_container">
-            <div class="map">
-              <div id="googleMap"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+
   <!-- end contact section -->
 
   <!-- client section -->

@@ -4,16 +4,8 @@ class GalleryController < ApplicationController
   end
 
   def search
-  	k=params[:search].to_s
-  	keyword="%"
-  	i=0
-  	while(i<k.length)
-  		keyword=keyword+k[i]+"%"
-  		i+=1
-  	end
-
-
-  	@vegetables=Store.find_by_sql ["select * from stores where name like ? or color like ?  or family like ? ", keyword, keyword,  keyword]
+  	keyword="%"+(params[:search]).to_s+"%"
+  	@vegetables=Store.find_by_sql ["SELECT * from stores WHERE name like ? or color like ? or family like ?", keyword, keyword, keyword]
   end
 
 
@@ -47,7 +39,7 @@ if credit_card.valid?
     session[:cart]=nil
     gateway.capture(amount.to_i, response.authorization)
 
-    redirect_to :action=>:purchase_complete
+    redirect_to :controller=>:gallery, :action=>:purchase_complete
   else
     raise StandardError, response.message
   end

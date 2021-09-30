@@ -915,5 +915,23 @@ a:focus {
   color: inherit;
 }
 
+
+
+
+
+
+.search_button {
+    display: inline-block;
+    width: 15%;
+    padding: 4px 10px;
+    background-color: #fff;
+    color: #ffffff;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    border: 1px solid #fff;
+    color: black;
+    margin-top: 0px;
+}
+
 /* end footer section*/
 /*# sourceMappingURL=style.css.map */
